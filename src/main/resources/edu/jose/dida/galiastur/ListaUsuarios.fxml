@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.effect.Reflection ?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+
+<VBox  xmlns:fx="http://javafx.com/fxml" style="-fx-background-image: url('file:C:/Users/jose/Documents/NetBeansProjects/GaliAstur/src/main/resources/imagenes/ola3.jpg')-fx-background-size: 100% 100%;"  fx:controller="edu.jose.dida.galiastur.ListaOlasController">
+
+     <!--<ToolBar HBox.hgrow ="ALWAYS" orientation="HORIZONTAL">
+        <Button fx:id="botonRetroceder" onAction="#retroceder"  text="Volver a Página Principal"/>         
+        <Button onAction="#añadir"  text="añadir"/>
+        <Button onAction="#eliminar"  text="eliminar"/>   
+        <Button onAction="#modificar" text= "modificar"/>           
+     </ToolBar> -->
+    <!-- <MenuBar>
+         <Menu text="Gráficos">
+            <MenuItem text="Añadir" onAction="#añadirGrafico" />
+            <MenuItem text="Eliminar" onAction="#eliminarGrafico" />
+         </Menu>
+     </MenuBar>-->
+  
+
+        <Label text="Lista surfistas" />
+        <TableView fx:id="tableView">
+           <columns>
+               <TableColumn fx:id="nombre" text="nombre" prefWidth="${tableView.width*0.33}"/>
+               <TableColumn fx:id="contrasena" text="contarsena" prefWidth="${tableView.width*0.34}"/>
+               <TableColumn fx:id="tipoUsuario" text="tipo de usuario" prefWidth="${tableView.width*0.33}"/>
+        </TableView>
+</VBox>
