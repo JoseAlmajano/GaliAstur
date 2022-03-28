@@ -24,11 +24,7 @@ public class App extends Application{
         layoutPane.cargarPantallas("menu"  ,PrincipalControler.class.getResource("MenuTop.fxml"));
         layoutPane.cargarPantallas("listaOlas", PrincipalControler.class.getResource("ListaOlas.fxml"));
         layoutPane.cargarPantallas("formularioOla", PrincipalControler.class.getResource("FormularioOla.fxml"));
-        //layoutPane.cargarPantallas("localidad", PrincipalControler.class.getResource("Localidad.fxml"));
         layoutPane.cargarPantallas("grafico", PrincipalControler.class.getResource("Grafico.fxml"));
-        
-        //layoutPane.cargarPantallaActual("formulario");
-        //layoutPane.cargarPantallaActual("principal");
         layoutPane.cargarPantallaActual("registro");
         
         Scene scene = new Scene(layoutPane);

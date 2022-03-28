@@ -17,42 +17,44 @@ public class ImagenListCell extends ListCell<Localidad> {
     
    
     @Override
-    protected void updateItem(Localidad elementoSeleccionado, boolean empty){
-        if(elementoSeleccionado != null && !empty) {
-            
-            super.updateItem(elementoSeleccionado, empty);
-            setText(elementoSeleccionado.getNombre());
-            String nombreImagen = "";
-           
-            String option = elementoSeleccionado.getNombre();
-            
-            switch(option) {
-                case "Coruña" : 
-                      nombreImagen = "banderaGalicia.jpg";
-                    break;
-                    
-                case "Lugo" : 
-                      nombreImagen = "banderaGalicia.jpg";
-                    break;
-                    
-                case "Aturias Occidental" : 
-                    nombreImagen = "banderaAsturiana.jpg";
-                    break; 
-                    
-                case "Asturias Oriental" : 
-                    nombreImagen = "banderaAsturiana.jpg";
-                    break;    
-            }
-       
-            Image imagen = new Image(getClass().getResourceAsStream(nombreImagen));
-            ImageView imageView = new ImageView(imagen);
-            Label labelConImagen = new Label();
-            labelConImagen.setGraphic(imageView);
-            setGraphic(labelConImagen);
-            
-        } else {
-            setText("");
+    protected void updateItem(Localidad nombreLocalidad, boolean empty){
+        super.updateItem(nombreLocalidad, empty);
+
+            setText(null);
             setGraphic(null);
-        }   
+            
+            if(nombreLocalidad != null){
+                String nombreImagen = "";
+                String option = nombreLocalidad.getNombre();
+            
+                switch(option) {
+                    case "Coruña" : 
+                          nombreImagen = "/imagenes/banderaGalicia.jpg";
+                        break;
+
+                    case "Lugo" : 
+                          nombreImagen = "/imagenes/banderaGalicia.jpg";
+                        break;
+
+                    case "Asturias Occidental" :
+                        nombreImagen = "/imagenes/banderaAsturiana.jpg";
+                        break; 
+
+                    case "Asturias Oriental" : 
+                        nombreImagen = "/imagenes/banderaAsturiana.jpg";
+                        break;    
+                }
+                
+                Image imagen = new Image(getClass().getResourceAsStream(nombreImagen));
+                ImageView imageView = new ImageView(imagen);
+                imageView.setFitHeight(20);
+                imageView.setFitWidth(40);
+                Label labelConImagen = new Label();
+                labelConImagen.setGraphic(imageView);
+                setText(option);
+                setGraphic(labelConImagen);
+                
+                
+            }
     }
 }

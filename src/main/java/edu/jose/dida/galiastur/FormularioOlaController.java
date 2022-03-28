@@ -14,25 +14,16 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-import javafx.util.StringConverter;
+
 
 
 /**
@@ -78,51 +69,8 @@ public class FormularioOlaController extends ControladorConNavegabilidad impleme
             configurarComboBoxLocalidad();
             configurarComboBoxLocales();
             
-            localidad.setCellFactory(cell -> new ListCell<Localidad>(){
-            
-               @Override
-               protected void updateItem(Localidad localidad, boolean empty){
-                super.updateItem(localidad, empty);
-                     if(localidad != null && !empty){
-                         
-                         /*   setText(elementoSeleccionado.getNombre());
-            String nombreImagen = "";
-           
-            String option = elementoSeleccionado.getNombre();
-            
-            switch(option) {
-                case "Coruña" : 
-                      nombreImagen = "banderaGalicia.jpg";
-                    break;
-                    
-                case "Lugo" : 
-                      nombreImagen = "banderaGalicia.jpg";
-                    break;
-                    
-                case "Aturias Occidental" : 
-                    nombreImagen = "banderaAsturiana.jpg";
-                    break; 
-                    
-                case "Asturias Oriental" : 
-                    nombreImagen = "banderaAsturiana.jpg";
-                    break;    
-            }
-       
-            Image imagen = new Image(getClass().getResourceAsStream(nombreImagen));
-            ImageView imageView = new ImageView(imagen);
-            Label labelConImagen = new Label();
-            labelConImagen.setGraphic(imageView);
-            setGraphic(labelConImagen); */
-                        }else {
-                            setText("");
-                            setGraphic(null);
-                        }
-                
-               }
-                    
-            });
-      
-            
+            localidad.setCellFactory(c -> new ImagenListCell());
+            localidad.setButtonCell(new ImagenListCell() );
         } catch (SQLException ex) {
             Logger.getLogger(FormularioOlaController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -141,18 +89,20 @@ public class FormularioOlaController extends ControladorConNavegabilidad impleme
            olasDao.modificarOla(idOla, nombreOla.getText(), descripcion.getText(),
                    localidad.getSelectionModel().getSelectedItem().getIdLocalidad(),
                    siCheck.isSelected() ? 0:1, locales.getSelectionModel().getSelectedItem());
+           idOla = 0;
        }
 
       ListaOlasController listaOlasControler = (ListaOlasController) this.layout.getController("listaOlas");
+      GraficoController graficoControler = (GraficoController) this.layout.getController("grafico");
       listaOlasControler.meterDatosEnTabla(olasDao.cargarDatosTablaOla());
+      graficoControler.cargarDatosEnElChart();
       this.layout.cargarPantallaActual("listaOlas");
     }
 
     @FXML
     private void volver() throws SQLException {
-     this.layout.cargarPantallaActual("listaOlas"); 
-     Map<String, Integer> olasPorLocalidad = new LocalidadDao().contarOlasPorLocalidad();
-       olasPorLocalidad.entrySet().forEach(e -> System.out.println("Localidad = "  + e.getKey() + " num olas = " + e.getValue()));
+        this.layout.cargarPantallaActual("listaOlas"); 
+         Map<String, Integer> olasPorLocalidad = new OlasDao().contarOlasPorLocalidad();
     }
    
     
@@ -172,7 +122,6 @@ public class FormularioOlaController extends ControladorConNavegabilidad impleme
      private void configurarComboBoxLocalidad() throws SQLException{
         ObservableList<Localidad> localidades = FXCollections.observableArrayList();  
         localidades.addAll(new LocalidadDao().getLocalidades());
-         System.out.println("localidades --->" + localidades);
         localidad.getItems().addAll(localidades);
         localidad.setConverter(new ConvertidorLocalidad());
     }
@@ -204,7 +153,7 @@ public class FormularioOlaController extends ControladorConNavegabilidad impleme
 
     @Override
     public Object call(Object p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

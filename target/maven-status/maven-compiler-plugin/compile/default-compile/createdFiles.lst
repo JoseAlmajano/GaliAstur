@@ -1,3 +1,4 @@
+edu\jose\dida\galiastur\FormularioOlaController.class
 edu\jose\dida\galiastur\LayoutPane.class
 edu\jose\dida\galiastur\OlasDao.class
 edu\jose\dida\galiastur\MenuTopControler.class
@@ -7,6 +8,7 @@ edu\jose\dida\galiastur\ListaOlasController$1$1.class
 edu\jose\dida\galiastur\ControladorConNavegabilidad.class
 edu\jose\dida\galiastur\Usuario.class
 edu\jose\dida\galiastur\UsuarioDao.class
+edu\jose\dida\galiastur\ListaOlasController$2$1.class
 edu\jose\dida\galiastur\ListaOlasController$1.class
 edu\jose\dida\galiastur\ImagenListCell.class
 edu\jose\dida\galiastur\ConvertidorLocalidad.class
@@ -17,4 +19,6 @@ edu\jose\dida\galiastur\Ola.class
 edu\jose\dida\galiastur\ListaOlasController$1$1$2.class
 edu\jose\dida\galiastur\RegistroController.class
 edu\jose\dida\galiastur\LocalidadDao.class
+edu\jose\dida\galiastur\FormularioOlaController$1.class
+edu\jose\dida\galiastur\ListaOlasController$2.class
 edu\jose\dida\galiastur\ListaOlasController.class

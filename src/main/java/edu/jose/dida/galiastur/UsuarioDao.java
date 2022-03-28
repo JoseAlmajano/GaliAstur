@@ -30,7 +30,7 @@ public class UsuarioDao  {
 
     
     public void crearTablaSiNoExiste() {
-      // int idUsuario, String nombre, String apellidos, String correo, int edad, String telefono
+    
         try(Connection conexionDB = DriverManager.getConnection(URL_CONEXION,USUARIO_BBDD,PASSWORD_BBDD)){
             Statement statement = conexionDB.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS usuario"+
@@ -39,43 +39,13 @@ public class UsuarioDao  {
                     "contrasena VARCHAR(10), " +
                     "tipoUsuario VARCHAR(10))";
            statement.executeUpdate(sql);
-            System.err.println("la tabla existe");
+
         
         }catch(Exception e){
             e.printStackTrace();
         }
     }
     
-  /*  public ArrayList<Usuario> cargarDatosTablaOla() throws SQLException{
-        
-       ArrayList<Usuario> listaOlas = new ArrayList<>();
-       
-       try (Connection conexionDB = DriverManager.getConnection(URL_CONEXION,USUARIO_BBDD,PASSWORD_BBDD)){
-         Statement statement = conexionDB.createStatement();
-         String sql = "SELECT * FROM ola";
-         ResultSet rs = statement.executeQuery(sql);
-         
-         while(rs.next()){
-             listaOlas .add(new Usuario(rs.getInt("id"), rs.getString("nombre"),rs.getString("descripcion"),rs.getString("localidad"),
-                     rs.getInt("fondoRocoso") == 0, rs.getString("locales")));
-         }
-         
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-     return listaOlas;
-    }
-    
-    public void eliminarDatosTabla(Ola ola)throws SQLException{
-        
-        try (Connection conexionDB = DriverManager.getConnection(URL_CONEXION,USUARIO_BBDD,PASSWORD_BBDD)){
-         Statement statement = conexionDB.createStatement();
-         String sql = "DELETE  FROM ola WHERE id =" + ola.getId();
-         statement.executeUpdate(sql);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }*/
     
     public void guardarUsuario (String nombre, String contraseña, String correo){
      
@@ -89,9 +59,7 @@ public class UsuarioDao  {
              throw new RuntimeException("Ocurrio un error al crear el usuario: " + e.getMessage());
         }
     } 
-    /* crear metodo comprobarUsuario en Usuario dao : select * from usuario
-                    where nombre usuario = getUsuario y contraseña =  getContraseña;
-                    Truco : comprueba si resultSet viene vacío*/
+   
     public boolean comprobarUsuario (String nombre, String contrasena){
        
         List<Usuario> listaUsuarios = new ArrayList<Usuario>();
@@ -110,45 +78,6 @@ public class UsuarioDao  {
         }
      return !listaUsuarios.isEmpty();  
     }
-   /* public void modificarOla(int id, String nombre, String descripcion, String localidad, int fondoRocoso, String locales)throws SQLException{
-     
-        try (Connection conexionDB = DriverManager.getConnection(URL_CONEXION,USUARIO_BBDD,PASSWORD_BBDD)){
-         Statement statement = conexionDB.createStatement();
-         String sql = "UPDATE ola(nombre, descripcion, localidad, fondoRocoso, locales)"+
-                 "SET ('" + nombre +"','" + descripcion +"','" + localidad+"'," + fondoRocoso +",'" + locales+ "')" +
-                 "WHERE id =" + id;
-
-        } catch (Exception e) {
-            
-        }
-    }
-     
-    
-    public ArrayList<Integer> encontrarIdDeOla(Ola ola) throws SQLException{
-        int fondoRocoso = ola.isFondoRocoso()? 0 : 1;
-        ArrayList<Integer> ids = new ArrayList<>();
-        try (Connection conexionDB = DriverManager.getConnection(URL_CONEXION,USUARIO_BBDD,PASSWORD_BBDD)){
-            Statement statement = conexionDB.createStatement();
-            String sql = "SELECT id FROM ola WHERE NOMBRE = '" + ola.getNombre() +
-                 "' AND DESCRIPCION = '"+ ola.getDescripcion()+
-                 "' AND LOCALIDAD = '" + ola.getLocalidad() + 
-                 "' AND FONDO ROCOSO = " + fondoRocoso +
-                 " AND LOCALES ='" + ola.getLocales() + "'";
-
-            ResultSet rs = statement.executeQuery(sql);
-            
-            while(rs.next()){
-              ids.add(rs.getInt("id"));
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        System.out.println("ids ====>)");
-        return ids;
-    }
-    
-}
-       */
 
     
 }

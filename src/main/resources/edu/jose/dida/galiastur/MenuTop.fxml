@@ -7,8 +7,8 @@
 <?import javafx.scene.control.Label?>
 
 
-<HBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.jose.dida.galiastur.MenuTopControler">
-    <MenuBar>
+<HBox fx:id="pantallaApp" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.jose.dida.galiastur.MenuTopControler">
+    <MenuBar HBox.hgrow="ALWAYS" minWidth="${pantallaApp.width}">
         <menus>
             <Menu mnemonicParsing="false">
                 <graphic>
@@ -22,7 +22,12 @@
             </Menu>
             <Menu mnemonicParsing="false">
                 <graphic>
-                    <Label text="Localidad" onMouseClicked="#navegarGrafico"/>
+                    <Label text="Gráfico" onMouseClicked="#navegarGrafico"/>
+                </graphic>
+            </Menu>
+             <Menu mnemonicParsing="false">
+                <graphic>
+                    <Label text="Salir" onMouseClicked="#navegarLogin"/>
                 </graphic>
             </Menu>
         </menus>

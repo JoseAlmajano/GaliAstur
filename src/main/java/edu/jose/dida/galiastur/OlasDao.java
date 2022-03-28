@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class OlasDao {
@@ -39,7 +41,7 @@ public class OlasDao {
         }
     }
     
-    public ArrayList<Ola> cargarDatosTablaOla() throws SQLException{
+    public ArrayList<Ola> cargarDatosTablaOla(){
         
        ArrayList<Ola> listaOlas = new ArrayList<>();
        
@@ -121,6 +123,32 @@ public class OlasDao {
       
         return ids;
     }
-    
+   
+
+    public Map<String, Integer> contarOlasPorLocalidad()  {
+  
+       Map<String, Integer> olasPorLocalidad = new HashMap<>();
+       
+      
+        try(Connection conexionDB = DriverManager.getConnection(URL_CONEXION,USUARIO_BBDD,PASSWORD_BBDD)){
+            Statement statement = conexionDB.createStatement();
+            String sql = "select l.nombre as nombre, count(1) as cantidad " +
+                        "from ola o " +
+                        "inner join localidad l " +
+                        "where o.idLocalidad = l.idLocalidad " +
+                        "group by l.nombre;";
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                String localidad = resultSet.getString("nombre");
+                int cantidadOlas = resultSet.getInt("cantidad");
+                olasPorLocalidad.put(localidad, cantidadOlas);
+            }
+    }catch (Exception e){
+        throw new RuntimeException("Ocurrió un error al contar el número de olas por localidad: " + e.getMessage());
+    }
+        return olasPorLocalidad;
+        
+   
 }
        
+}

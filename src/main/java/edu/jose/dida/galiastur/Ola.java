@@ -5,10 +5,7 @@
  */
 package edu.jose.dida.galiastur;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+
 
 /**
  *
@@ -16,7 +13,7 @@ import javafx.scene.control.TextField;
  */
 public class Ola {
     
-    private final int id;
+    private  int id;
     private String nombre;
     private String descripcion;
     private int idLocalidad;
@@ -31,6 +28,10 @@ public class Ola {
         this.idLocalidad = idLocalidad;
         this.fondoRocoso = fondoRocoso;
         this.locales = locales;
+    }
+
+    Ola() {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     public int getId() {
@@ -75,6 +76,10 @@ public class Ola {
 
     public void setLocales(String locales) {
         this.locales = locales;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
           

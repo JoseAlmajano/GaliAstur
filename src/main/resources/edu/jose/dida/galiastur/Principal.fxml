@@ -25,7 +25,7 @@
                               <Font size="42.0" />
                            </font>
                         </Label>  
-                          <Label fx:id="descripcion" opacity="0.56" prefHeight="11.0" prefWidth="895.0" styleClass="descripcion" text="Aplicación destinada a la ayuda del surfista, en la zona Atlántica y Cantábrica (A Coruña,Lugo,Asturias), para elegir un destino según el lugar, descripción , entorno local... ">
+                          <Label fx:id="descripcion" opacity="0.56" prefHeight="11.0" prefWidth="895.0" styleClass="descripcion" text="Aplicación destinada a la ayuda del surfista, en la zona Atlántica y Cantábrica (A Coruña,Lugo,Asturias)">
                            <effect>
                               <Bloom />
                            </effect>

@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -44,7 +43,7 @@ public class PrincipalControler extends ControladorConNavegabilidad implements I
             new OlasDao().crearTablaSiNoExiste();
         } catch (SQLException ex) {
             Logger.getLogger(PrincipalControler.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Algo falla!");
+        
         }
     }    
     

@@ -18,17 +18,13 @@ import javafx.scene.control.Button;
  * @author jose
  */
 public class RegistroController extends ControladorConNavegabilidad implements Initializable{
-
-    @FXML
-    private VBox pantallaRegistro;
+    
     @FXML
     private TextField usuario;
     @FXML
     private TextField contrasena;
     @FXML
     private TextField repetirContrasena;
-    @FXML
-    private Button botonAceptar;
     @FXML
     private Button botonRegistro;
     @FXML
@@ -72,16 +68,6 @@ public class RegistroController extends ControladorConNavegabilidad implements I
         
     }
     
- 
-    /*
-    Aquí hago método que hará:
-    1.si estamos enregistro, es pq repetirContraseña es visible.
-    comprueba que password y repetir password son =, después cogemos información e insertamos en tabla usuario(BBDD)
-    
-    2.Si estamos en login, repetirContraseña no esté visible
-    El metodo dara acceso a la app comprobando si está registrado
-    
-    */
     @FXML
     private void aceptar(){
         if(this.repetirContrasena.isVisible()) {
@@ -91,18 +77,11 @@ public class RegistroController extends ControladorConNavegabilidad implements I
         } else {
 
             boolean existeUsuario = usuarioDao.comprobarUsuario(usuario.getText(), contrasena.getText());
-            System.out.println("existe usuario? = " + existeUsuario);
+        
            if(existeUsuario){
                this.layout.cargarTop("menu");
                mostrarPantallaPrincipal();
            }
-            
-            /*  DEBERES :
-            recuperar datos de usuario y contraseña
-            crear metodo comprobarUsuario en Usuario dao : select * from usuario
-            where nombre usuario = getUsuario y contraseña =  getContraseña;
-            Truco : comprueba si resultSet viene vacío
-            Crear metodo que devuelve boleano --> true si hay un usuario con ese nombre y esa contraseña en la base */ 
         }
     }
     
@@ -113,9 +92,6 @@ public class RegistroController extends ControladorConNavegabilidad implements I
     
     private void registrarUsuario() {
         if(getContrasena().equals(getRepetirContrasena())){
-            System.err.println("Contraseña correcta");
-            
-            //mandar info de usuario a la base de datos
            guardarUsuario(getUsuario(), getContrasena(), "admin");
         }
     }

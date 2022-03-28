@@ -25,7 +25,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
-import org.h2.util.Utils;
 
 /**
  * FXML Controller class
@@ -60,7 +59,6 @@ public class ListaOlasController extends ControladorConNavegabilidad implements 
         try {
             localidadDao = new LocalidadDao();
             configurarTabla();
-            olasDao.cargarDatosTablaOla().forEach(ola -> System.out.println("ola localidad = " + ola.getIdLocalidad()));
             meterDatosEnTabla(olasDao.cargarDatosTablaOla());
         } catch (SQLException ex) {
             Logger.getLogger(ListaOlasController.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,6 +85,8 @@ public class ListaOlasController extends ControladorConNavegabilidad implements 
                                     try {
                                         eliminarOla();
                                     } catch (SQLException ex) {
+                                        Logger.getLogger(ListaOlasController.class.getName()).log(Level.SEVERE, null, ex);
+                                    } catch (IOException ex) {
                                         Logger.getLogger(ListaOlasController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
@@ -155,12 +155,13 @@ public class ListaOlasController extends ControladorConNavegabilidad implements 
        
     }
     
-    private void eliminarOla() throws SQLException {
+    private void eliminarOla() throws SQLException, IOException {
         Ola ola = tableView.getSelectionModel().getSelectedItem();
-        System.out.println("ID OLA ===> " + ola.getId());
         olasDao.eliminarDatosTabla(ola);
        
-        meterDatosEnTabla(olasDao.cargarDatosTablaOla()); 
+        meterDatosEnTabla(olasDao.cargarDatosTablaOla());
+        GraficoController graficoControler = (GraficoController) this.layout.getController("grafico");
+        graficoControler.cargarDatosEnElChart();
     }
     
     private void modificarOla() throws SQLException, IOException{

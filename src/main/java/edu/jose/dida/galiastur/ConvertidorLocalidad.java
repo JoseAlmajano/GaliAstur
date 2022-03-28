@@ -15,14 +15,14 @@ public class ConvertidorLocalidad extends StringConverter<Localidad> {
     @Override
     public String toString(Localidad localidad) {
         if(localidad.getNombre() == null){
-        return "";
+            return "";
         }
         return localidad.getNombre(); 
     }
 
     @Override
     public Localidad fromString(String string) {
-        return null; //To change body of generated methods, choose Tools | Templates.
+        return null; 
     }
     
     

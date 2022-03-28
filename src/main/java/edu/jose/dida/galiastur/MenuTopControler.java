@@ -8,8 +8,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Menu;
-import javafx.scene.input.MouseEvent;
+
 
 /**
  *
@@ -37,5 +36,9 @@ public class MenuTopControler extends ControladorConNavegabilidad implements Ini
     private void navegarGrafico(){
         this.layout.cargarPantallaActual("grafico");
     }
-    
+     @FXML
+    private void navegarLogin(){
+        this.layout.cargarPantallaActual("registro");
+        this.layout.cargarTop(null);
+}
 }
